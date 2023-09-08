@@ -15,7 +15,7 @@ import { DollModule } from './doll/doll.module';
       password: 'Fcnjhbj2006*',
       database: 'dolls',
       entities: [Doll],
-      //synchronize: true,
+      // synchronize: true,
       autoLoadEntities: true,
     }),
     DollModule,
