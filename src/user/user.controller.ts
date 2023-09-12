@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './entities';
 import { plainToClass } from 'class-transformer';
 import { UserDto } from './Dto/user.dto';
 
@@ -8,14 +7,15 @@ import { UserDto } from './Dto/user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get('/getUsers')
-  getAllUsers(): Promise<User[]> {
-    return this.userService.getAllUsers();
+  async getAllUsers(): Promise<UserDto[]> {
+    const users = await this.userService.getAllUsers();
+    return plainToClass(UserDto, users, { excludeExtraneousValues: true });
   }
 
   @Get('/findUser')
   async findUser(@Body() { username }): Promise<UserDto> {
     const foundUser = await this.userService.findUserByName(username);
-    return plainToClass(UserDto, foundUser);
+    return plainToClass(UserDto, foundUser, { excludeExtraneousValues: true });
   }
 
   @Delete('/deleteUser')
@@ -32,6 +32,6 @@ export class UserController {
     { username, password },
   ) {
     const addedUser = await this.userService.addUser(username, password);
-    return plainToClass(UserDto, addedUser);
+    return plainToClass(UserDto, addedUser, { excludeExtraneousValues: true });
   }
 }
