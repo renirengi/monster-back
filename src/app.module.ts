@@ -8,6 +8,8 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities';
 import { ProfileModule } from './profile/profile.module';
 import { Profile } from './profile/entities';
+import { CollectionModule } from './collection/collection.module';
+import { Collection } from './collection/entities';
 
 @Module({
   imports: [
@@ -18,13 +20,14 @@ import { Profile } from './profile/entities';
       username: 'postgres',
       password: 'Fcnjhbj2006*',
       database: 'dolls',
-      entities: [Doll, User, Profile],
+      entities: [Doll, User, Profile, Collection],
       synchronize: true,
       autoLoadEntities: true,
     }),
     DollModule,
     UserModule,
     ProfileModule,
+    CollectionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

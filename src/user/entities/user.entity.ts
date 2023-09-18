@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToMany,
+} from 'typeorm';
+import { Collection } from '../../collection/entities/index';
 
 @Entity()
 export class User extends BaseEntity {
@@ -23,4 +30,7 @@ export class User extends BaseEntity {
     insert: true,
   })
   password: string;
+
+  @OneToMany(() => Collection, (collection) => collection.user)
+  collections: Collection[];
 }

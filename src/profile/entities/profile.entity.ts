@@ -29,10 +29,6 @@ export class Profile extends BaseEntity {
 
   @Column({
     type: 'date',
-    length: 1000,
-    unique: true,
-    update: true,
-    insert: true,
   })
   birthDate: Date;
 
