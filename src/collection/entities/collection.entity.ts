@@ -1,3 +1,4 @@
+import { Doll } from '../../doll/entities';
 import { User } from '../../user/entities/index';
 import {
   Entity,
@@ -5,6 +6,8 @@ import {
   PrimaryGeneratedColumn,
   BaseEntity,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -26,4 +29,8 @@ export class Collection extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.collections)
   user: User;
+
+  @ManyToMany(() => Doll)
+  @JoinTable()
+  dolls: Doll[];
 }

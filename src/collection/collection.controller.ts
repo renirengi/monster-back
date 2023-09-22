@@ -5,9 +5,13 @@ import { Collection } from './entities';
 @Controller('collection')
 export class CollectionController {
   constructor(private readonly collectionService: CollectionService) {}
-  @Get('/getAllCollections')
-  getAllCollections(): Promise<Collection[]> {
-    return this.collectionService.getAllCollections();
+
+  @Get('/getAllCollectionsById')
+  getAllCollectionsById(
+    @Body()
+    { userId },
+  ): Promise<Collection[]> {
+    return this.collectionService.getAllCollectionsByID(userId);
   }
 
   @Post('/createCollection')

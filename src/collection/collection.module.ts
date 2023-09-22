@@ -4,9 +4,10 @@ import { CollectionController } from './collection.controller';
 import { Collection } from './entities';
 import { UserModule } from 'src/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DollModule } from 'src/doll/doll.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Collection]), UserModule],
+  imports: [TypeOrmModule.forFeature([Collection]), UserModule, DollModule],
   providers: [CollectionService],
   exports: [CollectionService],
   controllers: [CollectionController],

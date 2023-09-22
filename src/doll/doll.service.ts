@@ -26,9 +26,11 @@ export class DollService {
   findDoll(character: string): Promise<Doll[]> {
     return this.dollsRepository.find({ where: { character } });
   }
-  findDollById(id: number): Promise<Doll> {
-    return this.dollsRepository.findOne({ where: { id } });
+
+  async findDollById(id: number): Promise<Doll> {
+    return await this.dollsRepository.findOne({ where: { id } });
   }
+
   async addDoll(
     description: string,
     galleryImagesLinks: string[],
