@@ -45,7 +45,7 @@ export class CollectionService {
   }
 
   async addDollsToCollection(collectionId: number, dollsIds: number[]) {
-    const collection = await this.getAllCollectionsByID(collectionId);
+    const collection = await this.findCollectionById(collectionId);
 
     const dolls: Doll[] = [];
     for (let i = 0; i < dollsIds.length; i++) {

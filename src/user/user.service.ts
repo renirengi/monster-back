@@ -10,8 +10,8 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  getAllUsers(): Promise<User[]> {
-    return this.usersRepository.find();
+  async getAllUsers(): Promise<User[]> {
+    return await this.usersRepository.find();
   }
 
   updateUser() {}
@@ -23,11 +23,11 @@ export class UserService {
     }
     throw new NotFoundException('No user exist with such id');
   }
-  findUserByName(username: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { username } });
+  async findUserByName(username: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { username } });
   }
-  findUserById(id: number): Promise<User> {
-    return this.usersRepository.findOne({ where: { id: id } });
+  async findUserById(id: number): Promise<User> {
+    return await this.usersRepository.findOne({ where: { id: id } });
   }
 
   async addUser(username: string, password: string): Promise<User> {
