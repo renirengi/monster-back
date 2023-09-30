@@ -10,6 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { Profile } from './profile/entities';
 import { CollectionModule } from './collection/collection.module';
 import { Collection } from './collection/entities';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { Collection } from './collection/entities';
     UserModule,
     ProfileModule,
     CollectionModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

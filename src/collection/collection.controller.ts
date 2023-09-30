@@ -21,4 +21,12 @@ export class CollectionController {
   ) {
     return this.collectionService.createCollection(name, userId);
   }
+
+  @Post('/addDollsToCollection')
+  addDollsToCollection(
+    @Body()
+    { collectionId, dollsIds },
+  ) {
+    return this.collectionService.addDollsToCollection(collectionId, dollsIds);
+  }
 }

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { plainToClass } from 'class-transformer';
-import { UserDto } from './Dto/user.dto';
+import { UserDto } from './dto/user.dto';
 
 @Controller('user')
 export class UserController {
