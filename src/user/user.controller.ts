@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { plainToClass } from 'class-transformer';
 import { UserDto } from './dto/user.dto';
@@ -14,8 +22,8 @@ export class UserController {
   }
 
   @Get('/findUser')
-  async findUser(@Body() userDto: UserDto): Promise<UserViewDto> {
-    const foundUser = await this.userService.findUserByName(userDto.username);
+  async findUser(@Query('username') username: string): Promise<UserViewDto> {
+    const foundUser = await this.userService.findUserByName(username);
     return plainToClass(UserViewDto, foundUser, {
       excludeExtraneousValues: true,
     });

@@ -23,8 +23,8 @@ export class DollService {
     }
     throw new NotFoundException('No doll exist with such id');
   }
-  findDoll(character: string): Promise<Doll[]> {
-    return this.dollsRepository.find({ where: { character } });
+  async findDoll(character: string): Promise<Doll[]> {
+    return await this.dollsRepository.find({ where: { character } });
   }
 
   async findDollById(id: number): Promise<Doll> {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CollectionService } from './collection.service';
 import { Collection } from './entities';
 
@@ -12,18 +12,15 @@ export class CollectionController {
   }
 
   @Post('/createCollection')
-  addCollection(
-    @Body()
-    { name, userId },
-  ) {
-    return this.collectionService.createCollection(name, userId);
+  addCollection(@Param('id') id: number, @Query('name') name: string) {
+    return this.collectionService.createCollection(name, id);
   }
 
   @Post('/addDollsToCollection')
   addDollsToCollection(
-    @Body()
-    { collectionId, dollsIds },
+    @Param('id') id: number,
+    @Query('dollsId') dollsId: number[],
   ) {
-    return this.collectionService.addDollsToCollection(collectionId, dollsIds);
+    return this.collectionService.addDollsToCollection(id, dollsId);
   }
 }

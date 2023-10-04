@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { DollService } from './doll.service';
 import { Doll } from './entities';
 import { DollDto } from './dto/doll.dto';
@@ -11,8 +19,8 @@ export class DollController {
     return this.dollService.getAllDolls();
   }
   @Get('/findDoll')
-  findDoll(@Body() { character }): Promise<Doll[]> {
-    return this.dollService.findDoll(character);
+  async findDoll(@Query('character') character: string): Promise<Doll[]> {
+    return await this.dollService.findDoll(character);
   }
   @Delete('/deleteDoll')
   deleteDoll(@Param('id') id: number) {

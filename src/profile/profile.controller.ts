@@ -13,14 +13,14 @@ export class ProfileController {
 
   @Post('/createProfile')
   addProfile(
-    @Param('id') userId: number,
+    @Param('id') id: number,
     @Body()
     profileDto: ProfileDto,
   ) {
     return this.profileService.createProfile(
       profileDto.email,
       profileDto.birthDate,
-      userId,
+      id,
     );
   }
 }
