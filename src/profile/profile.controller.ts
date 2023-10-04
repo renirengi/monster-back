@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Profile } from './entities';
 import { ProfileService } from './profile.service';
+import { ProfileDto } from './dto/profile.dto';
 
 @Controller('profile')
 export class ProfileController {
@@ -12,9 +13,14 @@ export class ProfileController {
 
   @Post('/createProfile')
   addProfile(
+    @Param('id') userId: number,
     @Body()
-    { email, birthDate, userId },
+    profileDto: ProfileDto,
   ) {
-    return this.profileService.createProfile(email, birthDate, userId);
+    return this.profileService.createProfile(
+      profileDto.email,
+      profileDto.birthDate,
+      userId,
+    );
   }
 }

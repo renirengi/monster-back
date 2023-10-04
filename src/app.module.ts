@@ -24,6 +24,10 @@ import { AuthModule } from './auth/auth.module';
       entities: [Doll, User, Profile, Collection],
       synchronize: true,
       autoLoadEntities: true,
+      migrations: ['dist/src/db/migrations/*.js'],
+      // cli: {
+      //   migrationsDir: 'src/db/migrations',
+      // },
     }),
     DollModule,
     UserModule,

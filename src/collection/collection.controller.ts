@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CollectionService } from './collection.service';
 import { Collection } from './entities';
 
@@ -7,10 +7,7 @@ export class CollectionController {
   constructor(private readonly collectionService: CollectionService) {}
 
   @Get('/getAllCollectionsById')
-  getAllCollectionsById(
-    @Body()
-    { userId },
-  ): Promise<Collection[]> {
+  getAllCollectionsById(@Param('id') userId: number): Promise<Collection[]> {
     return this.collectionService.getAllCollectionsByID(userId);
   }
 

@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { DollService } from './doll.service';
 import { Doll } from './entities';
+import { DollDto } from './dto/doll.dto';
 
 @Controller('doll')
 export class DollController {
@@ -14,40 +15,29 @@ export class DollController {
     return this.dollService.findDoll(character);
   }
   @Delete('/deleteDoll')
-  deleteDoll(@Body() { id }) {
+  deleteDoll(@Param('id') id: number) {
     return this.dollService.deleteDoll(id);
   }
   @Post('/updateDoll')
   updateDoll() {}
+
   @Post('/createDoll')
   addDoll(
     @Body()
-    {
-      description,
-      galleryImagesLinks,
-      modelNumber,
-      series,
-      year,
-      type,
-      gender,
-      character,
-      exclusive,
-      reissue,
-      video,
-    },
+    dollDto: DollDto,
   ) {
     return this.dollService.addDoll(
-      description,
-      galleryImagesLinks,
-      modelNumber,
-      series,
-      year,
-      type,
-      gender,
-      character,
-      exclusive,
-      reissue,
-      video,
+      dollDto.description,
+      dollDto.galleryImagesLinks,
+      dollDto.modelNumber,
+      dollDto.series,
+      dollDto.year,
+      dollDto.type,
+      dollDto.gender,
+      dollDto.character,
+      dollDto.exclusive,
+      dollDto.reissue,
+      dollDto.video,
     );
   }
 }
