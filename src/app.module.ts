@@ -11,6 +11,7 @@ import { Profile } from './profile/entities';
 import { CollectionModule } from './collection/collection.module';
 import { Collection } from './collection/entities';
 import { AuthModule } from './auth/auth.module';
+import { CharacterModule } from './character/character.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
     ProfileModule,
     CollectionModule,
     AuthModule,
+    CharacterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

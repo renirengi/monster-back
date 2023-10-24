@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { Character } from 'src/character/entities/character.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity()
 export class Doll extends BaseEntity {
@@ -130,4 +138,8 @@ export class Doll extends BaseEntity {
     nullable: true,
   })
   video: string;
+
+  @ManyToMany(() => Character)
+  @JoinTable()
+  characters: Character[];
 }
