@@ -2,10 +2,14 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { hashedPass } from './hash';
 import { compare } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private usersService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async signUp(username: string, password: string) {
     const currentUser = await this.usersService.findUserByName(username);
@@ -26,6 +30,9 @@ export class AuthService {
     if (!userHash) {
       throw new UnauthorizedException();
     }
-    return currentUser;
+    const payload = { sub: currentUser.id, username: currentUser.username };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }

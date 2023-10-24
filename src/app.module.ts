@@ -23,7 +23,7 @@ import { CharacterModule } from './character/character.module';
       password: 'Fcnjhbj2006*',
       database: 'dolls',
       entities: [Doll, User, Profile, Collection],
-      synchronize: true,
+      synchronize: false,
       autoLoadEntities: true,
       migrations: ['dist/src/db/migrations/*.js'],
       // cli: {
