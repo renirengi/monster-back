@@ -12,6 +12,8 @@ import { CollectionModule } from './collection/collection.module';
 import { Collection } from './collection/entities';
 import { AuthModule } from './auth/auth.module';
 import { CharacterModule } from './character/character.module';
+import { Character } from './character/entities';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -22,8 +24,8 @@ import { CharacterModule } from './character/character.module';
       username: 'postgres',
       password: 'Fcnjhbj2006*',
       database: 'dolls',
-      entities: [Doll, User, Profile, Collection],
-      synchronize: false,
+      entities: [Doll, User, Profile, Collection, Character],
+      synchronize: true,
       autoLoadEntities: true,
       migrations: ['dist/src/db/migrations/*.js'],
       // cli: {
@@ -36,6 +38,7 @@ import { CharacterModule } from './character/character.module';
     CollectionModule,
     AuthModule,
     CharacterModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],
