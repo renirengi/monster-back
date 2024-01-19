@@ -1,4 +1,5 @@
 import { Character } from 'src/character/entities/character.entity';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Entity,
   Column,
@@ -22,6 +23,7 @@ export class Doll extends BaseEntity {
     exclusive: string,
     reissue: boolean,
     video: string,
+    id: string = uuidv4(),
   ) {
     super();
     this.description = description;
@@ -35,9 +37,10 @@ export class Doll extends BaseEntity {
     this.exclusive = exclusive;
     this.reissue = reissue;
     this.video = video;
+    this.id = id;
   }
-  @PrimaryGeneratedColumn({})
-  id: number;
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
+  id: string;
 
   @Column({
     type: 'varchar',

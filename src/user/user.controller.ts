@@ -11,8 +11,10 @@ import { UserService } from './user.service';
 import { plainToClass } from 'class-transformer';
 import { UserDto } from './dto/user.dto';
 import { UserViewDto } from './dto/userView.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('user')
+@ApiTags('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get('/getUsers')
@@ -30,7 +32,7 @@ export class UserController {
   }
 
   @Delete('/deleteUser')
-  deleteUser(@Param('id') id: number) {
+  deleteUser(@Param('id') id: string) {
     return this.userService.deleteUser(id);
   }
 

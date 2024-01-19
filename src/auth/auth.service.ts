@@ -3,12 +3,14 @@ import { UserService } from 'src/user/user.service';
 import { hashedPass } from './hash';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { AuthRedisStorage } from './auth.redis.storage';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UserService,
     private jwtService: JwtService,
+    private authRedisStorage: AuthRedisStorage,
   ) {}
 
   async signUp(username: string, password: string) {
@@ -31,8 +33,10 @@ export class AuthService {
       throw new UnauthorizedException();
     }
     const payload = { sub: currentUser.id, username: currentUser.username };
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+
+    const accessToken = await this.jwtService.signAsync(payload);
+    const refreshToken = await this.jwtService.signAsync(payload);
+    await this.authRedisStorage.set(currentUser.id, refreshToken);
+    return accessToken;
   }
 }

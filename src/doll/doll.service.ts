@@ -15,7 +15,7 @@ export class DollService {
   }
 
   updateDoll() {}
-  async deleteDoll(id: number) {
+  async deleteDoll(id: string) {
     const doll = await this.findDollById(id);
     if (doll) {
       await this.dollsRepository.delete(id);
@@ -27,7 +27,7 @@ export class DollService {
     return await this.dollsRepository.find({ where: { character } });
   }
 
-  async findDollById(id: number): Promise<Doll> {
+  async findDollById(id: string): Promise<Doll> {
     return await this.dollsRepository.findOne({ where: { id } });
   }
 

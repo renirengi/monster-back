@@ -1,4 +1,5 @@
 import { User } from 'src/user/entities';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Entity,
   Column,
@@ -10,13 +11,14 @@ import {
 
 @Entity()
 export class Profile extends BaseEntity {
-  constructor(email: string, birthDate: Date) {
+  constructor(email: string, birthDate: Date, id: string = uuidv4()) {
     super();
     this.email = email;
     this.birthDate = birthDate;
+    this.id = id;
   }
-  @PrimaryGeneratedColumn({})
-  id: number;
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
+  id: string;
 
   @Column({
     type: 'varchar',

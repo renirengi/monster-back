@@ -1,5 +1,6 @@
 import { Doll } from '../../doll/entities';
 import { User } from '../../user/entities/index';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Entity,
   Column,
@@ -12,12 +13,13 @@ import {
 
 @Entity()
 export class Collection extends BaseEntity {
-  constructor(name: string) {
+  constructor(name: string, id: string = uuidv4()) {
     super();
     this.name = name;
+    this.id = id;
   }
-  @PrimaryGeneratedColumn({})
-  id: number;
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
+  id: string;
 
   @Column({
     type: 'varchar',

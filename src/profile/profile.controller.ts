@@ -2,8 +2,10 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Profile } from './entities';
 import { ProfileService } from './profile.service';
 import { ProfileDto } from './dto/profile.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('profile')
+@ApiTags('profile')
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
   @Get('/getAllProfiles')
@@ -13,7 +15,7 @@ export class ProfileController {
 
   @Post('/createProfile')
   addProfile(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body()
     profileDto: ProfileDto,
   ) {

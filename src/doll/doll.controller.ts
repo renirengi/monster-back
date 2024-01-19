@@ -10,8 +10,10 @@ import {
 import { DollService } from './doll.service';
 import { Doll } from './entities';
 import { DollDto } from './dto/doll.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('doll')
+@ApiTags('doll')
 export class DollController {
   constructor(private readonly dollService: DollService) {}
   @Get('/getDolls')
@@ -23,7 +25,7 @@ export class DollController {
     return await this.dollService.findDoll(character);
   }
   @Delete('/deleteDoll')
-  deleteDoll(@Param('id') id: number) {
+  deleteDoll(@Param('id') id: string) {
     return this.dollService.deleteDoll(id);
   }
   @Post('/updateDoll')

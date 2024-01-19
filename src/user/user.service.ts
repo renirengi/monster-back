@@ -15,7 +15,7 @@ export class UserService {
   }
 
   updateUser() {}
-  async deleteUser(id: number) {
+  async deleteUser(id: string) {
     const user = await this.findUserById(id);
     if (user) {
       await this.usersRepository.delete(id);
@@ -26,7 +26,7 @@ export class UserService {
   async findUserByName(username: string): Promise<User> {
     return await this.usersRepository.findOne({ where: { username } });
   }
-  async findUserById(id: number): Promise<User> {
+  async findUserById(id: string): Promise<User> {
     return await this.usersRepository.findOne({ where: { id: id } });
   }
 
