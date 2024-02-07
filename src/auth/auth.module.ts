@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
+import { jwtConstants } from './jwt/constants';
 import { RedisModule } from 'src/redis/redis.module';
 import { AuthRedisStorage } from './auth.redis.storage';
 
